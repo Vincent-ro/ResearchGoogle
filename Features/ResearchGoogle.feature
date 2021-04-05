@@ -3,7 +3,7 @@ Feature: GoogleResearch
 
   Scenario: Research with one key word
     Given the user launch chrome browser
-    And the user is on the research Google page
+    Given the user is on the research Google page
     And the user enter a key word in the research field
     When the user validate
     Then the first site contains the key word

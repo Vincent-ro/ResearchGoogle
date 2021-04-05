@@ -1,6 +1,7 @@
 package stepDefinitions;
 
 import io.cucumber.java.en.*;
+import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
@@ -14,6 +15,7 @@ public class ResearchGoogleSteps {
 
     WebDriver driver;
 
+    @Test
     @Given("the user launch chrome browser")
     public void theUserLaunchChromeBrowser() {
         System.setProperty("webdriver.chrome.driver","C:\\Users\\vince\\Driver\\chromedriver_win32\\chromedriver.exe");
@@ -31,16 +33,19 @@ public class ResearchGoogleSteps {
         WebElement keyword=driver.findElement(By.xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input"));
         keyword.sendKeys("gherkin");
     }
+
     @When("the user validate")
     public void the_user_validate() {
         driver.findElement(By.xpath("/html/body/div[1]/div[3]/form/div[1]/div[1]/div[1]/div/div[2]/input")).sendKeys(Keys.RETURN);
     }
+
     @Then("the first site contains the key word")
     public void theFirstSiteContainsTheKeyWord() {
         String actualString = driver.findElement(By.xpath("//*[@id=\"rso\"]/div[2]/div[1]/div/div[1]/a/h3")).getText();
         String lowercaseActualString = actualString.toLowerCase();
         assertTrue(lowercaseActualString.contains("gherkin"));
     }
+
     @And("close browser")
     public void closeBrowser() {
         driver.quit();
